@@ -1,7 +1,19 @@
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import { cmsService } from '../src/cms/cmsService'
+import * as React from 'react';
+import Posts from '../src/components/Posts/index';
 
 
-export default function Home() {
+export default function Home({ data }:any) {
+  // const [dados, setDados] = React.useState([])
+  const [posts, setPosts] = React.useState([])
+  // During hydration `useEffect` is called. `window` is available in `useEffect`. In this case because we know we're in the browser checking for window is not needed. If you need to read something from window that is fine.
+  // By calling `setColor` in `useEffect` a render is triggered after hydrating, this causes the "browser specific" value to be available. In this case 'red'.
+  React.useEffect(() => setPosts(data), [data])
+  
+  // const color = 'azul'
+  console.log("color", posts)
   return (
     <>
       <Head>
@@ -10,7 +22,32 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <h1>my Blog</h1>
+      <h1>my Blog</h1>
+      <Posts posts={posts} />
+
+      {/* <pre>{JSON.stringify(dados) }</pre> */}
     </>
   )
+}
+export async function getStaticProps() {
+  const { data }:any = await cmsService({
+    query: `query{
+  
+      allPosts{
+    capa{
+    alt
+    }
+        id
+        title
+        description
+      }
+    }
+    `,
+  });
+  return {
+    props: {
+      data,
+    },
+    revalidate: 10,
+  }
 }
