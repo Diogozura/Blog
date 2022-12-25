@@ -1,7 +1,8 @@
 const TOKEN = process.env.DATO_TOKEN
 
 export async function cmsService({
-  query
+  query,
+  variables
 }) {
   try {
     const pageContentResponse = await fetch('https://graphql.datocms.com/', {
@@ -12,7 +13,7 @@ export async function cmsService({
       },
       body: JSON.stringify({
         query,
-
+        variables,
       })
     })
       .then(async (respsotaDoServer) => {

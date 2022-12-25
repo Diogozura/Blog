@@ -32,7 +32,6 @@ export default function Home({ data }:any) {
 export async function getStaticProps() {
   const { data }:any = await cmsService({
     query: `query{
-  
       allPosts{
     capa{
     alt

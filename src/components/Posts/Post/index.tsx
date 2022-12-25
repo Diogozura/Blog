@@ -7,4 +7,5 @@ export const BlocoPost = styled.aside`
     padding:10px;
     text-align: center;
     background-color: #FDDC5C;
+            
 `
