@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { cmsService } from '../../src/cms/cmsService'
+import Header from '../../src/components/Header'
 
 export async function getStaticPaths() {
   const pathsQuery = `
@@ -71,9 +72,7 @@ export default function Title({ cmsContent }) {
   console.log("mais oq temos aqui??", cmsContent)
   return (
     <>
-      <Head>
-        <title>FAQ - Alura</title>
-      </Head>
+     < Header/>
 
       <pre>
         {JSON.stringify(cmsContent, null, 4)}

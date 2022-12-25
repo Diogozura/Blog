@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { cmsService } from '../src/cms/cmsService'
 import * as React from 'react';
 import Posts from '../src/components/Posts/index';
+import Header from '../src/components/Header';
 
 
 export default function Home({ data }:any) {
@@ -22,7 +23,9 @@ export default function Home({ data }:any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>my Blog</h1>
+      
+      < Header/>
+      
       <Posts posts={posts} />
 
       {/* <pre>{JSON.stringify(dados) }</pre> */}

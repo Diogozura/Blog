@@ -1,9 +1,13 @@
 const TOKEN = process.env.DATO_TOKEN
+type Chama = {
+  query: any;
+  variables?: string
+ }
 
 export async function cmsService({
   query,
-  variables
-}) {
+  variables 
+}:Chama) {
   try {
     const pageContentResponse = await fetch('https://graphql.datocms.com/', {
       method: 'POST',
